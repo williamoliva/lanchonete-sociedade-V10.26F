@@ -1,0 +1,51 @@
+ROTEIRO DE TESTE - Lanchonete Sociedade (para fazer no Windows do Valmir)
+=========================================================================
+Marque cada item. Anote o que nao funcionou (e, se possivel, tire uma foto da tela).
+O que ja foi testado: o sistema em si, no Chrome, em computador Linux. O que AINDA NAO foi
+testado: o .bat, o atalho, a impressora termica real e a impressao direta. Por isso este roteiro.
+
+A) INSTALACAO
+[ ] Copiei a pasta para C:\Lanchonete (sem espacos no caminho)
+[ ] CRIAR-ATALHO.bat criou o atalho na area de trabalho (com o icone do hamburguer)
+[ ] O atalho abre o sistema em janela propria (sem barra de enderecos)
+[ ] Aparece a tela "Carregando" e depois pede para criar a senha; anotei o codigo de recuperacao
+[ ] A aba Produtos pede a mesma senha do login e trava de novo ao sair dela
+[ ] Entrei em Produtos e o cardapio completo esta la
+[ ] Botao Sair volta para a senha; a senha certa entra
+[ ] Fechei e abri de novo: os dados continuam la
+
+B) VENDA E COMANDAS
+[ ] (Se ligar Controle de caixa em Configuracoes) Abrir caixa com fundo de troco R$ 100,00
+[ ] Nova comanda "Teste" na Mesa 01; lancei X-Bacon, 2 refrigerantes (um por busca de numero)
+[ ] Coloquei observacao "sem cebola" no X-Bacon
+[ ] (Se ligar Pedido para a cozinha) Botao Cozinha: o ticket mostra so os itens novos, com a observacao
+[ ] Imprimi o ticket da cozinha na termica (leitura boa? cortou algo?)
+[ ] Apliquei desconto de 10%
+[ ] Mudei a comanda da Mesa 01 para a Mesa 05
+[ ] Abri outra comanda no Balcao e juntei com a primeira
+[ ] Finalizar pedido (F5): R$ 20 em Dinheiro + restante em Pix (pagamento dividido)
+[ ] Outra comanda paga em dinheiro com nota maior: o troco calculado esta certo
+[ ] Imprimi o cupom na termica (80 mm ou 58 mm conforme o rolo; em Configuracoes)
+[ ] Sangria de R$ 20,00 registrada
+
+C) FECHAMENTO (so se o Controle de caixa estiver ligado)
+[ ] Fechar o caixa: o valor esperado confere com a conta que fiz na mao
+[ ] Informei o dinheiro contado e a diferenca (sobra/falta) apareceu certa
+[ ] Imprimiu o fechamento de caixa
+[ ] Um arquivo backup-lanchonete-sociedade-....json apareceu na pasta Downloads
+[ ] Relatorios mostra o turno, as formas de pagamento e os descontos
+
+D) SEGURANCA DOS DADOS
+[ ] Configuracoes > Exportar gera o arquivo; Importar o restaura
+[ ] Desliguei o computador e liguei: os dados continuam
+[ ] Ao entrar no dia seguinte, apareceu um backup novo na pasta Downloads
+[ ] (Opcional) Tirei o cabo de energia com uma comanda aberta: ao religar, a comanda continuava (so o ultimo movimento pode se perder)
+[ ] Testei "Esqueci a senha" com o codigo de recuperacao
+[ ] (Opcional) IMPRIMIR_DIRETO=1 no .bat: imprime sem abrir a janela de impressao, na impressora certa
+
+E) ANTES DE USAR DE VERDADE
+[ ] Configuracoes > Apagar comandas e turnos (limpa os testes; o cardapio fica)
+[ ] Defini o preco dos itens "A confirmar" (Guarana 2 L, Coca-Cola 2 L, Brahma 0.0)
+[ ] Conferi todos os precos do cardapio
+
+Observacoes / problemas encontrados:

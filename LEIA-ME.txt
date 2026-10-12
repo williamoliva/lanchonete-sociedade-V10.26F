@@ -1,0 +1,130 @@
+LANCHONETE SOCIEDADE - Frente de caixa e comandas
+=================================================
+Versao para uso direto no Windows (Chrome ou Edge). Funciona sem internet.
+Visual de PDV (preto e amarelo), com o resumo do pedido na coluna da direita.
+Cardapio, comandas, turnos de caixa e relatorios ficam em um banco de dados local, dentro
+do proprio computador. Nada vai para a internet.
+
+COMO INSTALAR (Windows)
+1. Descompacte o zip e copie a pasta para o disco C:, sem espacos no nome.
+   Exemplo: C:\Lanchonete
+2. De dois cliques em CRIAR-ATALHO.bat. Ele coloca o atalho "Lanchonete Sociedade" na area
+   de trabalho. (Se falhar: botao direito em ABRIR-LANCHONETE.bat > Enviar para > Area de
+   trabalho.)
+3. Abra sempre pelo atalho (ou pelo ABRIR-LANCHONETE.bat). Ele abre o sistema em janela
+   propria, usando o Chrome (ou o Edge).
+IMPORTANTE: os dados ficam no perfil do navegador criado pelo .bat
+(%LocalAppData%\LanchoneteSociedade). Se abrir o index.html direto no Chrome, o sistema
+aparece vazio, porque o banco de dados e outro. Nao apague essa pasta.
+Para o ROTEIRO DE TESTE, veja o arquivo ROTEIRO-DE-TESTE.txt.
+
+ARQUIVOS
+  index.html             o sistema inteiro (e o arquivo que voce edita)
+  ABRIR-LANCHONETE.bat   abre o sistema em janela propria
+  CRIAR-ATALHO.bat       cria o atalho na area de trabalho
+  icon.ico, icon-*.png   icones
+  manifest.webmanifest, sw.js   so usados se o sistema for publicado online (GitHub Pages)
+
+--------------------------------------------------------------------------
+OPCOES (Configuracoes > Funcionalidades) - cada uma liga e desliga
+--------------------------------------------------------------------------
+- LOGIN COM SENHA (ligado por padrao): ao abrir pela primeira vez o sistema pede para criar
+  uma senha e mostra um CODIGO DE RECUPERACAO. Anote o codigo e guarde: e a unica forma de
+  entrar se esquecer a senha. Botao "Sair" no menu volta para a tela de senha.
+  Isso protege a tela contra uso casual. Nao impede quem tem acesso aos arquivos do
+  computador de ler os dados.
+- SENHA EM PRODUTOS (ligada por padrao): a aba Produtos pede a MESMA senha cadastrada para
+  entrar no sistema. Sem ela ninguem altera produtos, precos ou disponibilidade. A aba trava
+  de novo ao sair dela e pelo botao Sair. Por ser a mesma senha, quem entra no sistema e
+  tambem consegue abrir Produtos: se quiser separar o acesso do funcionario, nao informe a
+  senha a ele. Se o login for desligado, a senha continua valendo so para Produtos.
+  Atencao: Configuracoes e acessivel a todos que entrarem (inclui Importar backup, que
+  substitui os dados, e Apagar comandas).
+
+- ESQUECI A SENHA: na tela de senha, "Esqueci a senha" pede o CODIGO DE RECUPERACAO. Se o
+  codigo tambem foi perdido, "Perdi o codigo tambem" oferece (1) restaurar um arquivo de
+  backup (.json), que substitui os dados e permite criar senha nova, ou (2) zerar o
+  historico (digitando APAGAR; o cardapio fica) e criar senha nova. NAO existe recuperacao
+  por SMS ou e-mail: o sistema roda so no computador, sem servidor e sem internet, e nao
+  tem como enviar mensagens. Guarde o codigo de recuperacao em lugar seguro. Quem tem
+  acesso fisico ao computador e a um arquivo de backup consegue refazer a senha.
+- CONTROLE DE CAIXA (desligado por padrao): abertura com fundo de troco, sangria,
+  suprimento e fechamento com conferencia e backup automatico.
+- PEDIDO PARA A COZINHA (desligado por padrao): botao que imprime os itens novos e as
+  observacoes.
+
+--------------------------------------------------------------------------
+USO NO DIA A DIA
+--------------------------------------------------------------------------
+Sem as opcoes ligadas: Venda > toque nos produtos > Finalizar pedido (F5) > escolha a forma
+de pagamento > cupom.
+
+1. (SO COM CONTROLE DE CAIXA LIGADO) ABRIR O CAIXA (inicio do turno): informe o fundo de troco.
+2. COMANDAS: na tela Caixa, toque em "Nova comanda", de um nome (opcional) e escolha a mesa
+   ou o balcao. Toque nos produtos para lancar. Tambem da para digitar o nome ou o NUMERO do
+   produto na busca e apertar Enter. O icone de lapis coloca uma observacao no item
+   (ex.: sem cebola).
+3. (SO COM COZINHA LIGADA) COZINHA: o botao "Cozinha" imprime so o que e novo desde o ultimo envio e marca como enviado.
+   Se um item enviado for diminuido, o ticket sai como CANCELAR.
+4. RECEBER: botao "Finalizar pedido" (F5). Pode dividir entre Dinheiro, Pix, Debito e Credito. Em dinheiro, o
+   sistema calcula o troco. Depois sai o cupom de controle (nao fiscal).
+5. DESCONTO: em reais ou em porcentagem, por comanda. SERVICO 10%: opcional por comanda.
+6. MUDAR DE MESA / JUNTAR: troca a comanda de mesa ou junta os itens em outra comanda aberta.
+7. SANGRIA / SUPRIMENTO: retirada ou entrada de dinheiro na gaveta durante o turno.
+8. (SO COM CONTROLE DE CAIXA LIGADO) FECHAR O CAIXA (fim do turno): conte o dinheiro da gaveta e informe. O sistema mostra a
+   diferenca (sobra ou falta), imprime o fechamento e SALVA UM BACKUP automatico na pasta
+   Downloads. Comandas ainda abertas continuam abertas para o proximo turno.
+
+ATALHOS DE TECLADO
+  F2 busca de produto | F4 nova comanda | F5 finalizar pedido | F9 cozinha | Esc fecha janelas
+  F11 tela cheia
+
+PRECOS
+O preco de cada item fica congelado no momento em que e lancado na comanda. Mudar o preco
+no cadastro vale para os proximos lancamentos. Itens "A confirmar" (preco 0) ficam
+desativados ate voce definir o preco em Produtos.
+
+--------------------------------------------------------------------------
+IMPRESSAO NA TERMICA
+--------------------------------------------------------------------------
+1. Instale o driver da impressora termica no Windows e deixe como padrao.
+2. Em Configuracoes, escolha 80 mm ou 58 mm (largura da bobina).
+3. Na janela de impressao: margens "Nenhuma" e escala 100%.
+Para imprimir sem abrir a janela: abra ABRIR-LANCHONETE.bat no Bloco de Notas e troque
+IMPRIMIR_DIRETO=0 por IMPRIMIR_DIRETO=1. Tambem tem TELA_CHEIA=1 para abrir em tela cheia.
+Se a impressora padrao nao for a termica, a impressao direta vai para a errada.
+
+--------------------------------------------------------------------------
+BACKUP (IMPORTANTE)
+--------------------------------------------------------------------------
+- Configuracoes > Dados e backup > Exportar gera um arquivo .json. Importar restaura (substitui
+  os dados atuais).
+- BACKUP DIARIO AUTOMATICO (ligado por padrao, em Configuracoes): na primeira vez que o
+  sistema e aberto no dia (e ha dados), um arquivo de backup e salvo na pasta Downloads.
+  No maximo um por dia. Se faltar luz, o sistema grava cada acao com confirmacao em disco,
+  mas confira sempre o ultimo backup. Apague backups antigos da pasta Downloads de vez em quando.
+- Um backup automatico tambem e baixado toda vez que o caixa e fechado. Copie esses arquivos de vez
+  em quando para um pendrive ou para a nuvem. O sistema avisa na tela inicial quando o ultimo
+  backup tem mais de 7 dias.
+- Se a pasta do perfil for apagada, ou o Windows reinstalado, os dados somem. Sem backup, nao
+  ha como recuperar.
+- Use uma janela do sistema por vez.
+
+LIMPEZA AUTOMATICA
+Comandas FECHADAS (e turnos fechados) com mais de 60 dias sao apagadas sozinhas, ao abrir o
+sistema e a cada hora. Comandas abertas nunca sao apagadas. Em Configuracoes voce muda o
+prazo (7 a 365 dias) ou desliga. Exporte um backup antes se quiser guardar o historico.
+
+PUBLICAR ONLINE (opcional)
+Os mesmos arquivos funcionam em GitHub Pages: abra o endereco no Chrome/Edge e instale como
+aplicativo. O banco de dados fica ligado ao endereco: os dados do Windows (.bat) e os do site
+nao se misturam. Para levar de um para o outro, use Exportar e Importar.
+
+LIMITES
+Banco local = um computador. Para usar em mais de um aparelho ao mesmo tempo (caixa e cozinha
+em telas diferentes), o banco precisa ficar em um servidor. Isso nao existe nesta versao.
+Este sistema emite apenas cupom de controle interno, sem valor fiscal.
+
+ONDE MEXER NO CODIGO (index.html)
+- Cardapio inicial: procure por MENU (vale so no primeiro uso; depois use a tela Produtos).
+- Cores: bloco :root no comeco do arquivo.
